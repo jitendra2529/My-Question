@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Affairs 2025 (Q&A)</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+
+<body>
+  <!-- 🌟 Navigation Bar with Profile Dropdown -->
+  <nav>
+    <div class="menu-toggle"></div>
+    <div class="profile">
+      <div class="user">
+        <!-- <p>@Jitendra Shekhawat</p> -->
+      </div>
+      <div class="img-box">
+        <img src="./image/jss.png" alt="user image">
+      </div>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="./profile.html"><i class="ph-bold ph-user"></i>&nbsp;Profile</a></li>
+        <!-- <li><a href="#"><i class="ph-bold ph-envelope-simple"></i>&nbsp;Inbox</a></li>
+        <li><a href="#"><i class="ph-bold ph-gear-six"></i>&nbsp;Settings</a></li>
+        <li><a href="#"><i class="ph-bold ph-question"></i>&nbsp;Help</a></li>
+        <li><a href="#"><i class="ph-bold ph-sign-out"></i>&nbsp;Sign Out</a></li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 🌟 Q&A Card -->
+  <div class="card">
+    <h2 id="question">प्रश्न लोड हो रहा है...</h2>
+    <p id="answer"></p>
+
+    <div class="btns">
+      <button onclick="prevQuestion()">⬅️ पिछला</button>
+      <button onclick="nextQuestion()">अगला ➜</button>
+      <button onclick="toggleAuto()">⏩ Auto</button>
+      <button onclick="toggleVoice()">🔊 Voice</button>
+    </div>
+
+    <div class="counter" id="counter"></div>
+    <div class="status" id="status"></div>
+    <div class="progress-bar" id="progress"></div>
+  </div>
+  
+
+  <script src="./js/script.js"></script>
+  <script>
+    // 🌟 Profile Dropdown JS
+    let profile = document.querySelector('.profile');
+    let menu = document.querySelector('.menu');
+
+    profile.onclick = function () {
+      menu.classList.toggle('active');
+    };
+  </script>
+</body>
+
+</html>

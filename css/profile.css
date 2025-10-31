@@ -1,0 +1,196 @@
+   /* === Global Reset === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .www {
+      background: linear-gradient(135deg, #3A1C71, #D76D77, #FFAF7B);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* === Back Button === */
+    .back-btn {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 10px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+
+    .back-btn i {
+      vertical-align: middle;
+    }
+
+    @media (max-width: 480px) {
+      .back-btn {
+        top: -167px;
+        left: 333px;
+        font-size: 1.4rem;
+        padding: 8px 10px;
+      }
+    }
+
+    /* === Container === */
+    .about-container {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      padding: 40px 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      width: 100%;
+      animation: aboutFadeIn 1s ease-in-out;
+    }
+
+    .about-container h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .about-container p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #f5f5f5;
+    }
+
+    /* === Contact Section === */
+    .about-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .about-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 14px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .about-contact-item:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .about-contact-item i {
+      font-size: 1.6em;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .about-contact-item span {
+      font-size: 1rem;
+      color: #fff;
+      word-break: break-word;
+    }
+
+    .about-contact-item a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* === Footer === */
+    .about-footer {
+      margin-top: 35px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      letter-spacing: 0.3px;
+    }
+
+    /* === Animation === */
+    @keyframes aboutFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* === Responsive Design === */
+    @media (max-width: 768px) {
+      .about-container {
+        padding: 30px 25px;
+        border-radius: 16px;
+      }
+
+      .about-container h2 {
+        font-size: 1.7rem;
+      }
+
+      .about-container p {
+        font-size: 1rem;
+      }
+
+      .about-contact-item {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .about-contact-item i {
+        font-size: 1.4em;
+      }
+
+      .about-contact-item span {
+        font-size: 0.95rem;
+      }
+
+      .about-footer {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .www {
+        padding: 40px 15px;
+      }
+
+      .about-container {
+        padding: 25px 18px;
+      }
+
+      .about-container h2 {
+        font-size: 1.5rem;
+      }
+
+      .about-container p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .about-contact-item span {
+        font-size: 0.9rem;
+      }
+    }
