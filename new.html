@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advanced Quiz System</title>
+
+<style>
+  body {
+    background: #0d1b2a;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: #1b263b;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  h2 {
+    text-align: center;
+  }
+  .option {
+    background: #415a77;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .option:hover {
+    background: #778da9;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #2ecc71;
+    border: none;
+    color: white;
+    font-size: 16px;
+    display: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .score {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Advanced Quiz</h2>
+
+  <div id="quiz-box">
+    <h2 id="question">Loading...</h2>
+    <div id="options"></div>
+    <button id="nextBtn" onclick="nextQ()">Next</button>
+  </div>
+
+  <div class="score" id="scoreBox" style="display:none;"></div>
+</div>
+
+<script>
+let quiz = [];
+let index = 0;
+let score = 0;
+
+// ================================
+// Your Google Sheet ID
+// ================================
+const SHEET_ID = "1650-GAL3_9s8fjMF7f1JxEDOWO2TNn7I4-ADlfPKjgk";
+
+const jsonURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+// Fetch Google Sheet JSON
+fetch(jsonURL)
+  .then(res => res.text())
+  .then(text => {
+    // Remove Google sheet wrapper
+    const jsonData = JSON.parse(text.substr(47).slice(0, -2));
+
+    quiz = jsonData.table.rows.map(row => ({
+      q: row.c[0].v,
+      o: [row.c[1].v, row.c[2].v, row.c[3].v, row.c[4].v],
+      a: row.c[5].v
+    }));
+
+    loadQ();
+  })
+  .catch(e => {
+    console.error("JSON लोड नहीं हो पाया:", e);
+    document.getElementById("question").innerText =
+      "Question data load failed. कृपया पुनः प्रयास करें।";
+  });
+
+// Load Question
+function loadQ() {
+  if (index >= quiz.length) {
+    document.getElementById("quiz-box").style.display = "none";
+    document.getElementById("scoreBox").style.display = "block";
+    document.getElementById("scoreBox").innerText =
+      `Quiz Finished! आपका Score: ${score} / ${quiz.length}`;
+    return;
+  }
+
+  document.getElementById("question").innerText = quiz[index].q;
+
+  let optionsHtml = "";
+  quiz[index].o.forEach((option, i) => {
+    optionsHtml += `<div class="option" onclick="check(${i})">${option}</div>`;
+  });
+
+  document.getElementById("options").innerHTML = optionsHtml;
+  document.getElementById("nextBtn").style.display = "none";
+}
+
+// Check Answer
+function check(selectedIndex) {
+  let correctIndex = quiz[index].a;
+  let optionElems = document.querySelectorAll(".option");
+
+  optionElems.forEach((opt, i) => {
+    opt.style.pointerEvents = "none";
+
+    if (i === correctIndex) {
+      opt.style.backgroundColor = "#2ecc71";
+    } else if (i === selectedIndex) {
+      opt.style.backgroundColor = "#e63946";
+    }
+  });
+
+  if (selectedIndex === correctIndex) {
+    score++;
+  }
+
+  document.getElementById("nextBtn").style.display = "block";
+}
+
+// Next Question
+function nextQ() {
+  index++;
+  loadQ();
+}
+</script>
+
+</body>
+</html>
